@@ -18,9 +18,9 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page bg-dark">
 <div class="">
-  <div class="login-logo">
+  <div class="login-logo bg-dark">
   <a href="/" class="brand-link">
       <img src="/img/logo.png" alt="Doitall Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
@@ -29,14 +29,14 @@
   </div>
   <!-- /.login-logo -->
   <div class="card">
-    <div class="card-body ">
+    <div class="card-body login-card-body">
       <p class="login-box-msg">Digite seu email e senha.</p>
 
       <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}</label>
+                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Nome') }}</label>
 
                             <div class="col-md-8">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
