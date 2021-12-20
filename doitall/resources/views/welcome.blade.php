@@ -38,7 +38,7 @@
           <p class="nav-link active" aria-current="page" href="#">Doitall faz tudo pra você e seu negócio</p>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/home">Acessar minha conta</a>
+          <a class="nav-link" href="/register">Não tenho cadastro</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Vantagens</a>
