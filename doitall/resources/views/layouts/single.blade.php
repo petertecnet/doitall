@@ -209,6 +209,15 @@
               <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
+                Cupoms
+                <span class="badge badge-info right">0</span>
+              </p>
+            </a>
+              </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
                 Notificações
                 <span class="badge badge-info right">0</span>
               </p>
