@@ -29,9 +29,10 @@ class CreateUsersTable extends Migration
             $table->softDeletes();
         });
 
-        $this->newADM('Fabio','fabio@doitall.com.br','123456');
-        $this->newADM('Pedro','pivow@doitall.com.br','123456');
-        $this->newADM('Lucas', 'lucas@doitall.com', '123456');
+        $this->newCad('1','Administrador','adm@doitall.com.br','123456');
+        $this->newCad('2','Pedro','pivow@doitall.com.br','123456');
+        $this->newCad('3','Lucas', 'lucas@doitall.com', '123456');
+        $this->newCad('4','Fabio','fabio@doitall.com.br','123456');
 }
 
 
@@ -45,8 +46,9 @@ class CreateUsersTable extends Migration
         Schema::dropIfExists('users');
     }
 
-    public function newADM($name,$user,$pass,$role=9){
+    public function newCad($id, $name,$user,$pass,$role=9){
         $cad = new User();
+        $cad->id = $id;
         $cad->name = $name;
         $cad->email = $user;
         $cad->password = bcrypt($pass);
