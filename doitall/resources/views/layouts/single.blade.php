@@ -370,6 +370,8 @@
          <input type="text" name="cnpj" id="cnpj" class="form-control">
          Telefone:
          <input type="text" name="phone" id="phone" class="form-control">
+         Email:
+         <input type="text" name="email" id="email" class="form-control">
          Endereço:      
          <input type="text" name="address" id="address" class="form-control"> 
          Estado:
