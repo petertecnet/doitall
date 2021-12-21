@@ -20,3 +20,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware' => 'auth.role:9'], function () {
+
+    Route::resources([
+        'products' => PhotoController::class,
+    ]);
+
+});
