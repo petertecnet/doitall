@@ -12,7 +12,7 @@
             </tr>
           </thead>
           <tbody>
-              @foreach($companies as $company)
+              @foreach($cads as $company)
             <tr>
               <td>{{ $company->id }} </td>
               <td>{{ $company->name }}</td>
@@ -22,7 +22,7 @@
           </tbody>
         </table>
         <div class="col-12 d-flex justify-content-center">
-          {{ $companies->links() }}
+          {{ $cads->links() }}
         </div>
         </div>
     </div>
