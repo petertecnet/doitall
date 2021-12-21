@@ -12,11 +12,11 @@
             </tr>
           </thead>
           <tbody>
-              @foreach($cads as $company)
+              @foreach($cads as $product)
             <tr>
-              <td>{{ $company->id }} </td>
-              <td>{{ $company->name }}</td>
-              <td>{{ $company->user_id }} </td>
+              <td>{{ $product->id }} </td>
+              <td>{{ $product->name }}</td>
+              <td>{{ $product->user_id }} </td>
             </tr>
               @endforeach
           </tbody>
