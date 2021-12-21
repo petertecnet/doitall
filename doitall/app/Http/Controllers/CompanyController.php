@@ -15,7 +15,7 @@ class CompanyController extends Controller
     public function index()
     {
        
-        $company = Company::all();
+        $companies = Company::latest()->paginate(5);
         return view('company.index', compact('companies'));
     }
 
@@ -37,7 +37,9 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $company = Company::create($request->all());
+        return view('company.index')->with('success', "Cadastrado efetivado com sucesso!");
+ 
     }
 
     /**

@@ -6,6 +6,7 @@
   <title>Doitall @auth - {{ Auth::user()->name }} @endauth</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- Font Awesome -->
   <link rel="icon" type="image/png"href="/img/logo.png">
   <link rel="stylesheet" href="/adminlte/plugins/fontawesome-free/css/all.min.css">
@@ -193,7 +194,6 @@
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Meus dados
-                <span class="badge badge-info right">0</span>
               </p>
             </a>
             <li class="nav-item">
@@ -223,19 +223,18 @@
               </p>
             </a>
               </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
+            <li class="nav-item ">
+              <a  class="nav-link" data-bs-toggle="modal" data-bs-target="#companycreate">
               <i class="nav-icon fas fa-copy"></i>
-              <p>
-                Pagamentos
-                <span class="badge badge-info right">0</span>
+              <p class="text-warning">
+                Cadastrar minha empresa
               </p>
             </a>
               </li>
             </ul>
           </li>
           <li class="nav-item has-treeview  ">
-            <a href="#" class="nav-link bg-info ">
+            <a class="nav-link bg-warning "  >
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Empresa
@@ -343,6 +342,84 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+  
+<!-- The Modal of Company Create -->
+<div class="modal bg-warning" id="companycreate">
+  <div class="modal-dialog modal-xl ">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Cadastro de empresa</h4><br>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        
+      <p class="modal-title">Quem bom que você tem uma empresa. 
+          Ficamos muito gratos em poder cooperar para o crescimento de seu negocio. 
+          Digite abaixo alguns dados para que possamos liberar varias funcionalidades para gerenciar os processos de seu negocio.
+        </p><br>
+        <form method="POST" action="/companies/store">
+        @csrf
+       <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}" class="form-control">
+         Nome da empresa:
+         <input type="text" name="name" id="name" class="form-control">
+         CNPJ:
+         <input type="text" name="cnpj" id="cnpj" class="form-control">
+         Telefone:
+         <input type="text" name="phone" id="phone" class="form-control">
+         Endereço:      
+         <input type="text" name="address" id="address" class="form-control"> 
+         Estado:
+         <select class="form-control " id="uf" name="uf" style="color: #00a5bb" required>
+	<option value="">Selecione</option>
+	<option value="AC">Acre</option>
+	<option value="AL" >Alagoas</option>
+	<option value="AP" >Amapá</option>
+	<option value="AM" >Amazonas</option>
+	<option value="BA" >Bahia</option>
+	<option value="CE" >Ceará</option>
+	<option value="DF" >Distrito Federal</option>
+	<option value="ES" >Espírito Santo</option>
+	<option value="GO" >Goiás</option>
+	<option value="MA" >Maranhão</option>
+	<option value="MT" >Mato Grosso</option>
+	<option value="MS" >Mato Grosso do Sul</option>
+	<option value="MG" >Minas Gerais</option>
+	<option value="PA" >Pará</option>
+	<option value="PB" >Paraíba</option>
+	<option value="PR" >Paraná</option>
+	<option value="PE" >Pernambuco</option>
+	<option value="PI" >Piauí</option>
+	<option value="RJ" >Rio de Janeiro</option>
+	<option value="RN" >Rio Grande do Norte</option>
+	<option value="RS" >Rio Grande do Sul</option>
+	<option value="RO" >Rondônia</option>
+	<option value="RR" >Roraima</option>
+	<option value="SC" >Santa Catarina</option>
+	<option value="SP" >São Paulo</option>
+	<option value="SE" >Sergipe</option>
+	<option value="TO" >Tocantins</option>
+</select>
+         Cidade:
+         <input type="text" name="city" id="city" class="form-control">
+        <br> 
+        <button type="subbmit" class="btn btn-primary addCompany">Cadastrar</button>
+        </form>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
   <footer class="main-footer">
     <strong>Doitall </strong>
     Seu sistema que faz tudo
@@ -393,5 +470,9 @@
 <script src="/adminlte/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/adminlte/dist/js/demo.js"></script>
+<!-- Pro Modal -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
 </body>
 </html>
