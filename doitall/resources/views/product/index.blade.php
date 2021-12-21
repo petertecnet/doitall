@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row ">
         <div class="col-md-12">
-  <table class="table table-bordered">
+  <table class="table ">
           <thead>
             <tr>
               <th scope="col">ID</th>
@@ -21,9 +21,6 @@
               @endforeach
           </tbody>
         </table>
-        <div class="col-12 d-flex justify-content-center">
-          {{ $cads->links() }}
-        </div>
         </div>
     </div>
 </div>

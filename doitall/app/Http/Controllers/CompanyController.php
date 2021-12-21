@@ -14,6 +14,7 @@ class CompanyController extends Controller
      * @return \Illuminate\Http\Response
      */
     protected $view = 'company';
+    protected $route = 'companies';
     public function index()
     {
        
@@ -28,7 +29,8 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view($this->view.'.create');
     }
 
     /**
@@ -40,7 +42,7 @@ class CompanyController extends Controller
     public function store(Request $request)
     {
         $cad = Company::create($request->all());
-        return view('company.index')->with('success', "Cadastrado efetivado com sucesso!");
+        return redirect()->route($this->route.'.index')->with('success', "Cadastrado efetivado com sucesso!");
  
     }
 
