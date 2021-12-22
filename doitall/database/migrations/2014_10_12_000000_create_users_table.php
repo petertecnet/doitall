@@ -19,6 +19,11 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('status')->default(1)->comment('0 bloqueado - 1 liberado - 2 pendente');
             $table->tinyInteger('role')->default(0)->comment('0-Cliente - 1-Funcionario - 2-Supervisor 8-Gerente 9-Administrador');
             $table->string('name',50);
+            $table->string('phone',50);
+            $table->string('address')->nullable();
+            $table->string('city',60)->nullable();
+            $table->string('uf',2)->nullable();
+            $table->string('company_id',50)->default(0);
             $table->string('email',150)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -46,13 +51,14 @@ class CreateUsersTable extends Migration
         Schema::dropIfExists('users');
     }
 
-    public function newCad($id, $name,$user,$pass,$role=9){
+    public function newCad($id, $name,$user,$pass,$company_id=1, $role=9){
         $cad = new User();
         $cad->id = $id;
         $cad->name = $name;
         $cad->email = $user;
         $cad->password = bcrypt($pass);
         $cad->role = $role;
+        $cad->company_id = $company_id;
         $cad->status = 1;
         $cad->save();
     }
