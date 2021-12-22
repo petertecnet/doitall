@@ -38,7 +38,7 @@
           <p class="nav-link active" aria-current="page" href="#">Doitall faz tudo pra você e seu negócio</p>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/register">Não tenho cadastro</a>
+       @auth  @else <a class="nav-link" href="/register">Não tenho cadastro</a>@endauth
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Vantagens</a>
@@ -62,7 +62,17 @@
 
 <!-- Page Content -->
 <div class="container">
+@auth 
+<a href="/home" class="">
+<img src="/img/logo2.png" alt="Doitall Logo" class="">
 
+<button class="btn btn-secondary">
+  <span class="spinner-grow spinner-border-sm"></span>
+ PAINEL ADMINISTRATIVO
+</button>
+
+</a>
+  @else 
 <a href="/login" class="">
 <img src="/img/logo2.png" alt="Doitall Logo" class="">
 
@@ -70,7 +80,9 @@
   <span class="spinner-grow spinner-border-sm"></span>
   FAZER LOGIN
 </button>
+
 </a>
+@endauth
 </div>
 
 <!-- jQuery -->

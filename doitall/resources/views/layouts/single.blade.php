@@ -190,7 +190,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="/users/{{\Auth::user()->id}}" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Meus dados
@@ -371,8 +371,8 @@
           Digite abaixo alguns dados para que possamos liberar varias funcionalidades para gerenciar os processos de seu negocio.
         </p><br>
         
-       
-        <form action="{{ route('companies.store') }}" method="post">
+    
+        <form action="{{ route('companies.store') }}" method="POST">
         @csrf
        <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}" class="form-control">
          Nome da empresa:
@@ -486,6 +486,10 @@
 <!-- Pro Modal -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
 
+
+<script>
+
+</script>
 
 </body>
 </html>
