@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Company;
 
 class User extends Authenticatable
 {
@@ -42,4 +43,30 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function _role(){
+        if ($this->role==9) return "Administrador";
+        if ($this->role==8) return "Gerente";
+        if ($this->role==7) return "Supervisor";
+        if ($this->role==6) return "Funcionário";
+        else return "Usuário";
+    }
+    public function _company(){
+
+
+        $companies = Company::get();
+
+        if($this->company_id>0)
+       { foreach($companies as $company)
+        {
+            if ($this->company_id == $company->id) 
+            {return  $company->name;}
+
+
+        }
+    }
+
+
+        else return "Sem empresa";
+    }
 }

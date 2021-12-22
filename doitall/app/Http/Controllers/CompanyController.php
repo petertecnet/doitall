@@ -15,13 +15,27 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
     protected $view = 'company';
     protected $route = 'companies';
+
     public function index()
     {
        
-        $cads = Company::latest()->paginate(5);
-        return view($this->view.'.index', compact('cads'));
+        $role = Auth::user()->role;
+        $id = Auth::user()->company_id;
+        if($role==9)
+        {
+            $cads = Company::all();
+            return view($this->view.'.index', compact('cads'));
+        }
+       else
+        {
+            $cads = Company::findOrFail($id);
+            return view($this->view.'.show', compact('cads'));
+        }
+
     }
 
     /**

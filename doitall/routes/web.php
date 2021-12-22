@@ -1,11 +1,10 @@
 <?php
 
 use App\Http\Controllers\CompanyController;
-
 use App\Http\Controllers\ProductController;
 
 use App\Http\Controllers\UserController;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,10 +35,7 @@ Route::resource('companies', CompanyController::class );
 Route::group(['middleware' => 'auth.role:9'], function () {
 
 
-  
 Route::resource('products', ProductController::class );
-
-
 
 });
 });

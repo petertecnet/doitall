@@ -1,6 +1,5 @@
 @extends('layouts.single')
 @section('content')
-<<<<<<< HEAD
 
 <div class="container">
     <div class="row ">
@@ -9,10 +8,13 @@
                 <div class="card-header">Dados</div>
 
                 <div class="card-body">
-               Nome: {{$cad->id}} <br>
+               Nome: {{$cad->name}} <br>
+               Empresa: {{$cad->_Company()}}<br>
+               Email: {{$cad->email}}<br>
+               Perfil: {{$cad->_role()}}<br>
+            
                 </div>
             </div>
-
         </div>
     </div>
 </div>

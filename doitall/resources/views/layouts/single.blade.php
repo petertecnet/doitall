@@ -209,10 +209,64 @@
           Ficamos muito gratos em poder cooperar para o crescimento de seu negocio. 
           Digite abaixo alguns dados para que possamos liberar varias funcionalidades para gerenciar os processos de seu negocio.
         </p><br>
+<<<<<<< HEAD
         <form action="{{ route('companies.store') }}" method="post">
         @method('POST')
                 @include('company.form')
                    </form>
+=======
+        
+    
+        <form action="{{ route('companies.store') }}" method="POST">
+        @csrf
+       <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}" class="form-control">
+         Nome da empresa:
+         <input type="text" name="name" id="name" class="form-control">
+         CNPJ:
+         <input type="text" name="cnpj" id="cnpj" class="form-control">
+         Telefone:
+         <input type="text" name="phone" id="phone" class="form-control">
+         Email:
+         <input type="text" name="email" id="email" class="form-control">
+         Endereço:      
+         <input type="text" name="address" id="address" class="form-control"> 
+         Estado:
+         <select class="form-control " id="uf" name="uf" style="color: #00a5bb" required>
+	<option value="">Selecione</option>
+	<option value="AC">Acre</option>
+	<option value="AL" >Alagoas</option>
+	<option value="AP" >Amapá</option>
+	<option value="AM" >Amazonas</option>
+	<option value="BA" >Bahia</option>
+	<option value="CE" >Ceará</option>
+	<option value="DF" >Distrito Federal</option>
+	<option value="ES" >Espírito Santo</option>
+	<option value="GO" >Goiás</option>
+	<option value="MA" >Maranhão</option>
+	<option value="MT" >Mato Grosso</option>
+	<option value="MS" >Mato Grosso do Sul</option>
+	<option value="MG" >Minas Gerais</option>
+	<option value="PA" >Pará</option>
+	<option value="PB" >Paraíba</option>
+	<option value="PR" >Paraná</option>
+	<option value="PE" >Pernambuco</option>
+	<option value="PI" >Piauí</option>
+	<option value="RJ" >Rio de Janeiro</option>
+	<option value="RN" >Rio Grande do Norte</option>
+	<option value="RS" >Rio Grande do Sul</option>
+	<option value="RO" >Rondônia</option>
+	<option value="RR" >Roraima</option>
+	<option value="SC" >Santa Catarina</option>
+	<option value="SP" >São Paulo</option>
+	<option value="SE" >Sergipe</option>
+	<option value="TO" >Tocantins</option>
+</select>
+         Cidade:
+         <input type="text" name="city" id="city" class="form-control">
+        <br> 
+        <button type="subbmit" class="btn btn-primary addCompany">Cadastrar</button>
+        </form>
+>>>>>>> b4969972fe1e66c6b1a21a4f808ce38090e941d2
       </div>
 
       <!-- Modal footer -->
@@ -278,6 +332,10 @@
 <!-- Pro Modal -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
 
+
+<script>
+
+</script>
 
 </body>
 </html>
