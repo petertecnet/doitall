@@ -1,11 +1,9 @@
 <?php
 
 use App\Http\Controllers\CompanyController;
-
 use App\Http\Controllers\ProductController;
-
 use App\Http\Controllers\UserController;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,15 +28,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['middleware' => 'auth.role:0'], function () {
  Route::resource('users', UserController::class );
+ 
+Route::resource('companies', CompanyController::class );
 
 Route::group(['middleware' => 'auth.role:9'], function () {
 
-
-  
-Route::resource('companies', CompanyController::class );
 Route::resource('products', ProductController::class );
-
-
 
 });
 });
