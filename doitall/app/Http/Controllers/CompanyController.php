@@ -6,6 +6,8 @@ use App\Models\Company;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
 
 class CompanyController extends Controller
 {
@@ -14,6 +16,7 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     protected $view = 'company';
     protected $route = 'companies';
 
