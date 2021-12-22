@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
 
 class CompanyController extends Controller
 {
@@ -12,9 +16,26 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    protected $view = 'company';
+    protected $route = 'companies';
+
     public function index()
     {
-        //
+       
+        $role = Auth::user()->role;
+        $id = Auth::user()->company_id;
+        if($role==9)
+        {
+            $cads = Company::all();
+            return view($this->view.'.index', compact('cads'));
+        }
+       else
+        {
+            $cads = Company::findOrFail($id);
+            return view($this->view.'.show', compact('cads'));
+        }
+
     }
 
     /**
@@ -35,7 +56,14 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $company = Company::create($request->all());
+        $user_id = $request->user_id;
+        $user = User::findOrFail($user_id);
+        $user->company_id = $company->id;
+        $user->role = 4;
+        $user->save();
+        return redirect()->route($this->route.'.index')->with('success', "Cadastrado efetivado com sucesso!");
+ 
     }
 
     /**
