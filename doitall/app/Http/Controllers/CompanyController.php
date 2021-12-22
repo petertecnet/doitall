@@ -6,8 +6,6 @@ use App\Models\Company;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-
 
 $view = 'company';
 class CompanyController extends Controller
@@ -60,14 +58,14 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        $company = Company::create($request->all());
+        $cad = Company::create($request->all());
         $user_id = $request->user_id;
         $user = User::findOrFail($user_id);
-        $user->company_id = $company->id;
-        $user->role = 4;
+        $user->company_id = $cad->id;
+        $user->role = 8;
         $user->save();
-        return redirect()->route($this->route.'.index')->with('success', "Cadastrado efetivado com sucesso!");
- 
+        $id = $cad->id;
+        return view($this->view.'.update', compact('cad'))->with('success', "Cadastrado efetivado com sucesso!");
     }
 
     /**
@@ -76,9 +74,15 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function show(Company $company)
+    public function show($id)
     {
-        //
+        
+        $cad = Company::find($id);
+        if($cad){
+            
+        return view($this->view.'.show', compact('cad'));  
+        }   
+        return redirect()->back();
     }
 
     /**
@@ -87,9 +91,19 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function edit(Company $company)
+    public function edit($id)
     {
-        //
+        $cad = Company::find($id);
+        if(!$cad):
+            return redirect()->back();
+        endif;
+        //Verifica se é gerente e se a empresa é deste gerente
+        if($cad->id == Auth::user()->company_id && Auth::user()->role == 8)
+        { return view($this->view.'.update', compact('cad')); }  
+        //Verifica se é administrador
+        if(Auth::user()->role == 9)
+        { return view($this->view.'.update', compact('cad')); }   
+        return redirect()->back();
     }
 
     /**
@@ -99,9 +113,17 @@ class CompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(Request $request, $id)
     {
-        //
+        $cad = Company::find($id);
+        if(!$cad):
+            return redirect()->back();
+        endif;
+
+        $cad->update($request->all());
+        $id= $cad->id;
+        return view($this->view.'.update', compact('cad'))->with('success', "Cadastrado efetivado com sucesso!");
+ 
     }
 
     /**

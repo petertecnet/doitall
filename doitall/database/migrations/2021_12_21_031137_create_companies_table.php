@@ -28,6 +28,9 @@ class CreateCompaniesTable extends Migration
         });
         
         $this->newCad('Empresa Teste','1','123456');
+        $this->newCad('Lucas Company Teste','2','123456');
+        $this->newCad('Fabio Company Teste','3','123456');
+        $this->newCad('Peter Tecnet ','4','123456');
     }
 
     /**
