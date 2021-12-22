@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 
+$view = 'company';
 class CompanyController extends Controller
 {
     /**
@@ -16,6 +17,7 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
 
     protected $view = 'company';
     protected $route = 'companies';
@@ -45,7 +47,8 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view($this->view.'.create');
     }
 
     /**

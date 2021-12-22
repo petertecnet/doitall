@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
@@ -13,6 +15,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     
     protected $view = 'user';
     protected $route = 'users';
@@ -49,6 +52,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
+
     {   
         
         $cad = User::find($id);
@@ -67,6 +71,7 @@ class UserController extends Controller
         $id = Auth::user()->id;
         $cad = User::find($id);        
         return view($this->view.'.show', compact('cad'));   
+
     }
 
     /**

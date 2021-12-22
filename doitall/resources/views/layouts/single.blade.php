@@ -371,7 +371,7 @@
           Digite abaixo alguns dados para que possamos liberar varias funcionalidades para gerenciar os processos de seu negocio.
         </p><br>
         
-       
+    
         <form action="{{ route('companies.store') }}" method="POST">
         @csrf
        <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}" class="form-control">

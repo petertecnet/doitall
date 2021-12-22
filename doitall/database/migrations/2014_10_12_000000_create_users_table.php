@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('status')->default(1)->comment('0 bloqueado - 1 liberado - 2 pendente');
             $table->tinyInteger('role')->default(0)->comment('0-Cliente - 1-Funcionario - 2-Supervisor 8-Gerente 9-Administrador');
             $table->string('name',50);
+
             $table->string('phone',50);
             $table->string('address')->nullable();
             $table->string('city',60)->nullable();
@@ -51,6 +52,7 @@ class CreateUsersTable extends Migration
     {
         Schema::dropIfExists('users');
     }
+
 
 
     public function newCad($id, $name,$user,$pass,$company_id=1, $role=9){
