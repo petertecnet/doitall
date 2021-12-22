@@ -43,14 +43,13 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        $company = Company::create($request->all());
-        $id = $request->user_id;
-        $user = User::findOrFail($id);
-        $user->company_id = $company->id;
+        $cad = Company::create($request->all());
+        $user_id = $request->user_id;
+        $user = User::findOrFail($user_id);
+        $user->company_id = $cad->id;
         $user->role = 8;
         $user->save();
-        $id= $company->id;
-        $cad = User::findOrFail($id);
+        $id = $cad->id;
         return view($this->view.'.update', compact('cad'))->with('success', "Cadastrado efetivado com sucesso!");
     }
 
@@ -108,7 +107,7 @@ class CompanyController extends Controller
 
         $cad->update($request->all());
         $id= $cad->id;
-        return redirect()->back()->with('success', "Cadastro atualizado com sucesso");
+        return view($this->view.'.update', compact('cad'))->with('success', "Cadastrado efetivado com sucesso!");
  
     }
 
