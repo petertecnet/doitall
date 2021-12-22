@@ -12,9 +12,15 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    
+    protected $view = 'product';
+    protected $route = 'products';
     public function index()
     {
-        //
+        $cads = Product::all();
+        return view($this->view.'.index', compact('cads'));
+
     }
 
     /**
@@ -24,7 +30,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+       
+        return view($this->view.'.create');
+
     }
 
     /**
@@ -35,7 +43,11 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        
+        $cad = Product::create($request->all());
+        return redirect()->route($this->route.'.index')->with('success', "Cadastrado efetivado com sucesso!");
+
     }
 
     /**

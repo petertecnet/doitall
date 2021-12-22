@@ -17,6 +17,7 @@ class CompanyController extends Controller
      */
 
 
+
     protected $view = 'company';
     protected $route = 'companies';
 

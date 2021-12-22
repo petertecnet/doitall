@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row ">
         <div class="col-md-12">
-  <table class="table table-bordered">
+  <table class="table ">
           <thead>
             <tr>
               <th scope="col">ID</th>
@@ -12,18 +12,15 @@
             </tr>
           </thead>
           <tbody>
-              @foreach($cads as $company)
+              @foreach($cads as $product)
             <tr>
-              <td>{{ $company->id }} </td>
-              <td>{{ $company->name }}</td>
-              <td>{{ $company->user_id }} </td>
+              <td>{{ $product->id }} </td>
+              <td>{{ $product->name }}</td>
+              <td>{{ $product->user_id }} </td>
             </tr>
               @endforeach
           </tbody>
         </table>
-        <div class="col-12 d-flex justify-content-center">
-          {{ $cads->links() }}
-        </div>
         </div>
     </div>
 </div>
