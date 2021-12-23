@@ -13,7 +13,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="/users/{{Auth::user()->id}}/edit" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Meus dados

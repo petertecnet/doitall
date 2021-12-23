@@ -82,7 +82,17 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cad = User::find($id);
+        if(!$cad):
+            return redirect()->back();
+        endif;
+        //Verifica se é o perfil do usuario logado
+        if($cad->id == Auth::user()->id)
+        { return view($this->view.'.update', compact('cad')); }  
+        //Verifica se é administrador
+        if(Auth::user()->role == 9)
+        { return view($this->view.'.update', compact('cad')); }   
+        return redirect()->back();
     }
 
     /**
@@ -94,7 +104,14 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cad = User::find($id);
+        if(!$cad):
+            return redirect()->back();
+        endif;
+
+        $cad->update($request->all());
+        $id= $cad->id;
+        return view($this->view.'.update', compact('cad'))->with('success', "Cadastrado efetivado com sucesso!");
     }
 
     /**
