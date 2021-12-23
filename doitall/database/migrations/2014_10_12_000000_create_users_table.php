@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('role')->default(0)->comment('0-Cliente - 1-Funcionario - 2-Supervisor 8-Gerente 9-Administrador');
             $table->string('name',50);
             $table->string('phone',50)->default(0);
+            $table->string('cpf',11)->default(0);
             $table->string('address')->nullable();
             $table->string('city',60)->nullable();
             $table->string('uf',2)->nullable();

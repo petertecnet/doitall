@@ -6,7 +6,8 @@ use App\Models\Company;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-$view = 'company';
+
+
 class CompanyController extends Controller
 {
     /**
@@ -135,4 +136,6 @@ class CompanyController extends Controller
     {
         //
     }
+
+
 }

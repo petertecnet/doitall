@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PlagioController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/dados/{cpf}', [App\Http\Controllers\PlagioController::class, 'dados'])->name('dados');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
