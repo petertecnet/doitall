@@ -28,13 +28,17 @@ class CompanyController extends Controller
         $id = Auth::user()->company_id;
         if($role==9)
         {
-            $cads = Company::all();
+            $cads =  Company::paginate(8);
             return view($this->view.'.index', compact('cads'));
-        }
-       else
+        }  
+         if($role>7)
         {
             $cads = Company::findOrFail($id);
             return view($this->view.'.show', compact('cads'));
+        }
+       else
+        {
+            return redirect()->back();
         }
 
     }
@@ -76,12 +80,24 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        
-        $cad = Company::find($id);
+        $role = Auth::user()->role;
+        if($role==9)
+        {
+            $cad = Company::find($id);
         if($cad){
             
         return view($this->view.'.show', compact('cad'));  
         }   
+        }
+        if($role>7)
+        {
+        
+            $cad = Company::find(Auth::user()->company_id);
+            return redirect('/'.$this->route.'/'.$cad->id.'/edit');
+        }
+
+
+        
         return redirect()->back();
     }
 

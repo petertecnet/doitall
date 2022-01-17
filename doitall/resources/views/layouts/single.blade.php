@@ -193,7 +193,7 @@
 
   
 <!-- The Modal of Company Create -->
-<div class="modal bg-warning" id="companycreate">
+<div class="modal" id="companycreate">
   <div class="modal-dialog modal-xl ">
     <div class="modal-content">
 
@@ -209,28 +209,35 @@
           Ficamos muito gratos em poder cooperar para o crescimento de seu negocio. 
           Digite abaixo alguns dados para que possamos liberar varias funcionalidades para gerenciar os processos de seu negocio.
         </p><br>
-<<<<<<< HEAD
-        <form action="{{ route('companies.store') }}" method="post">
-        @method('POST')
-                @include('company.form')
-                   </form>
-=======
         
     
         <form action="{{ route('companies.store') }}" method="POST">
-        @csrf
        <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}" class="form-control">
-         Nome da empresa:
-         <input type="text" name="name" id="name" class="form-control">
-         CNPJ:
-         <input type="text" name="cnpj" id="cnpj" class="form-control">
-         Telefone:
-         <input type="text" name="phone" id="phone" class="form-control">
-         Email:
-         <input type="text" name="email" id="email" class="form-control">
-         Endereço:      
-         <input type="text" name="address" id="address" class="form-control"> 
-         Estado:
+        @csrf
+        <div class="row">
+          <div class="col-md-8">
+
+          Nome da empresa:
+         <input type="text" name="name" id="name" class="form-control" required>
+          </div>
+          <div class="col-md-4">
+
+          CNPJ:
+         <input type="text" name="cnpj" id="cnpj" class="form-control" required>
+          </div>
+          <div class="col-md-3">
+
+          Telefone:
+         <input type="text" name="phone" id="phone" class="form-control" required>
+          </div>
+          <div class="col-md-3">
+
+          Email:
+         <input type="text" name="email" id="email" class="form-control" required>
+          </div>
+          <div class="col-md-2">
+
+          Estado:
          <select class="form-control " id="uf" name="uf" style="color: #00a5bb" required>
 	<option value="">Selecione</option>
 	<option value="AC">Acre</option>
@@ -261,17 +268,31 @@
 	<option value="SE" >Sergipe</option>
 	<option value="TO" >Tocantins</option>
 </select>
-         Cidade:
-         <input type="text" name="city" id="city" class="form-control">
+          </div>
+          <div class="col-md-4">
+
+          Cidade:
+         <input type="text" name="city" id="city" class="form-control" required>
+          </div>
+          
+          <div class="col-md-8">
+
+          Endereço:      
+         <input type="text" name="address" id="address" class="form-control" required> 
+          </div>
+          <div class="col-md-4">
+
+          CEP:      
+         <input type="text" name="cep" id="cep" class="form-control" required> 
+          </div>
+        </div>
         <br> 
-        <button type="subbmit" class="btn btn-primary addCompany">Cadastrar</button>
+        <button type="subbmit" class="btn btn-primary addCompany float-right">Cadastrar</button>
         </form>
->>>>>>> b4969972fe1e66c6b1a21a4f808ce38090e941d2
       </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
       </div>
 
     </div>

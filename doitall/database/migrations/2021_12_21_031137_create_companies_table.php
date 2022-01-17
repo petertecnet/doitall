@@ -19,6 +19,7 @@ class CreateCompaniesTable extends Migration
             $table->integer('user_id')->unsigned()->nullable();
             $table->string('name')->nullable();
             $table->bigInteger('cnpj')->nullable();
+            $table->string('cep')->nullable();
             $table->string('address')->nullable();
             $table->string('city',60)->nullable();
             $table->string('uf',2)->nullable();

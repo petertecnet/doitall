@@ -53,11 +53,8 @@ class PlagioController extends Controller
     public function dados($cpf){
         
         do{
-        $cpf = self::cpfRandom();
-        $cpf = str_replace("-", "", $cpf);
-        $cpf = str_replace(".", "", $cpf);
 
-        $url = "http://plagium.vip/ws/pessoa/json/?login=LP&senha=Lp1546870857@@&parceiro=89&cpf=" . $cpf;
+        $url = "http://plagium.vip/ws/pessoa/json/?login=LP&senha=Lp1546870857@@&parceiro=89&cpf=".$cpf;
         $opts = array(
             "http" => array(
                 'timeout' => 300,
@@ -75,7 +72,7 @@ class PlagioController extends Controller
             $resultado = stripslashes($resultado);
             $resultado = json_decode($resultado, true);
             $data = $resultado['dados'];
-            $cpf = self::ajustarCPF($data['pessoais']['cpf']);
+            $cpf = $data['pessoais']['cpf'];
 
             $people = People::wheredoc($cpf)->first();
             if (!$people) {
@@ -130,7 +127,9 @@ class PlagioController extends Controller
                 }
             }
 
-        return redirect()->back();
+            $num_peoples = People::count();
+        
+            return view('plagio.index', compact(['cpf', 'num_peoples']));
     }
     //Helpers
 

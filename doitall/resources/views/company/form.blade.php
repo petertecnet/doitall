@@ -1,18 +1,29 @@
+@csrf
+        <div class="row">
+          <div class="col-md-8">
 
-        @csrf
-       <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}" class="form-control">
-         Nome da empresa:
-         <input type="text" name="name" id="name"  value="{{ $cad->name ?? old ('name')}}" class="form-control">
-         CNPJ:
-         <input type="text" name="cnpj" id="cnpj" value="{{ $cad->cnpj ?? old ('cnpj')}}" class="form-control">
-         Telefone:
-         <input type="text" name="phone" id="phone" value="{{ $cad->phone ?? old ('phone')}}" class="form-control">
-         Email:
-         <input type="text" name="email" id="email" value="{{ $cad->email ?? old ('email')}}" class="form-control">
-         Endereço:      
-         <input type="text" name="address" id="address" value="{{ $cad->address ?? old ('address')}}" class="form-control"> 
-         Estado:
-         <select class="form-control " id="uf" name="uf" style="color: #00a5bb" required>
+          Nome da empresa:
+         <input type="text" name="name" id="name" class="form-control"  value="{{ $cad->name ?? old ('name')}}" required>
+          </div>
+          <div class="col-md-4">
+
+          CNPJ:
+         <input type="text" name="cnpj" id="cnpj"  value="{{ $cad->cnpj ?? old ('cnpj')}}" class="form-control" required>
+          </div>
+          <div class="col-md-3">
+
+          Telefone:
+         <input type="text" name="phone" id="phone" value="{{ $cad->phone ?? old ('phone')}}" class="form-control" required>
+          </div>
+          <div class="col-md-3">
+
+          Email:
+         <input type="text" name="email" id="email" value="{{ $cad->email ?? old ('email')}}"  class="form-control" required>
+          </div>
+          <div class="col-md-2">
+
+          Estado:
+		  <select class="form-control " id="uf" name="uf" style="color: #00a5bb" required>
 	<option value="">Selecione</option>
 	<option value="AC" @if (!empty($cad)) {{ $cad->uf == 'AC' ? 'selected' : '' }} @endif>Acre</option>
 	<option value="AL"  @if (!empty($cad)) {{ $cad->uf == 'AL' ? 'selected' : '' }} @endif >Alagoas</option>
@@ -42,7 +53,26 @@
 	<option value="SE"  @if (!empty($cad)) {{ $cad->uf == 'SE' ? 'selected' : '' }} @endif >Sergipe</option>
 	<option value="TO"  @if (!empty($cad)) {{ $cad->uf == 'TO' ? 'selected' : '' }} @endif >Tocantins</option>
 </select>
-         Cidade:
-         <input type="text" name="city" id="city" value="{{ $cad->city ?? old ('city')}}"class="form-control">
+          </div>
+          <div class="col-md-4">
+
+          Cidade:
+         <input type="text" name="city" id="city" value="{{ $cad->city ?? old ('city')}}" class="form-control" required>
+          </div>
+          
+          <div class="col-md-8">
+
+          Endereço:      
+         <input type="text" name="address" id="address" value="{{ $cad->address ?? old ('address')}}" class="form-control" required> 
+          </div>
+          <div class="col-md-4">
+
+          CEP:      
+         <input type="text" name="cep" id="cep"  value="{{ $cad->cep ?? old ('cep')}}"  class="form-control" required> 
+          </div>
+        </div>
         <br> 
-        <button type="subbmit" class="btn btn-primary addCompany">Salvar</button>
+        <button type="subbmit" class="btn btn-primary addCompany float-right">Enviar</button>
+
+
+		

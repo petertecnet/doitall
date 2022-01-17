@@ -1,5 +1,18 @@
 @extends('layouts.single')
 @section('content')
+
+<div class="container">
+    <div class="row ">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Empresas</div>
+
+                <div class="card-body">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container">
     <div class="row ">
         <div class="col-md-12">
@@ -22,7 +35,7 @@
           </tbody>
         </table>
         <div class="col-12 d-flex justify-content-center">
-          {{ $cads->links() }}
+        {{!! $cads->links() !!}}
         </div>
         </div>
     </div>

@@ -3,8 +3,8 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item has-treeview {{ request()->is('users*') || request()->is('home')  ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link bg-primary">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Perfil
@@ -60,7 +60,7 @@
           </li>
           
           @if(\Auth::user()->company_id > 0)
-          <li class="nav-item has-treeview  ">
+          <li class="nav-item has-treeview  {{ request()->is('companies/'.Auth::user()->company_id.'*')  ? 'menu-open' : '' }} ">
             <a class="nav-link bg-warning "  >
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -120,7 +120,7 @@
 
           
           @if(\Auth::user()->role == 9)
-          <li class="nav-item has-treeview ">
+          <li class="nav-item has-treeview {{ request()->is('companies')  ? 'menu-open' : '' }} ">
             <a href="#" class="nav-link bg-danger">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -130,7 +130,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="/companies" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Empresas

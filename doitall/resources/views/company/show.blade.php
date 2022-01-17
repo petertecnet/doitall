@@ -1,6 +1,5 @@
 @extends('layouts.single')
 @section('content')
-<<<<<<< HEAD
 
 <div class="container">
     <div class="row ">

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 3 | Log in</title>
+  <title>Doitall | Log in</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -18,21 +18,22 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="hold-transition login-page bg-dark">
-<div class="login-box">
-  <div class="login-logo">
+<body class="hold-transition login-page bg-dafult">
+<div class="login-box" style="width: 40%; ">
+  
+  <!-- /.login-logo -->
+  <div class="card" >
+    <div class="card-body "  style="background-image: url(/img/background3.png) ;   background-repeat: no-repeat;"   >
+    <div class="login-logo">
   <a href="/" class="brand-link">
       <img src="/img/logo.png" alt="Doitall Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">Doitall</span>
     </a>
-  </div>
-  <!-- /.login-logo -->
-  <div class="card">
-    <div class="card-body login-card-body">
+  </div> 
       <p class="login-box-msg">Digite seu email e senha.</p>
 
-      <form method="POST" action="{{ route('login') }}">
+      <form method="POST" action="{{ route('login') }}" >
                 @csrf
 
                 <div class="form-group row">
@@ -69,7 +70,7 @@
                 <div class="form-group row mb-0">
                     <div class="col-md-8 offset-md-4">
                         <button type="submit" class="btn btn-primary">
-                            {{ __('Login') }}
+                            {{ __('Acessar') }}
                         </button>
                         <a type="link" href="/register" class="btn btn-secondary">
                             {{ __('Novo cadastro') }}
@@ -78,22 +79,6 @@
                     </div>
                 </div>
             </form>
-
-      <div class="social-auth-links text-center mb-3">
-     
-       
-        <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i> Entrar com Google+
-        </a>
-      </div>
-      <!-- /.social-auth-links -->
-
-      <p class="mb-1">
-        <a href="forgot-password.html">Esqueci minha senha</a>
-      </p>
-      <p class="mb-0">
-        <a href="/register" class="text-center">Não tenho cadastro</a>
-      </p>
     </div>
     <!-- /.login-card-body -->
   </div>

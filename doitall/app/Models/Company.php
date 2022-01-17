@@ -11,7 +11,7 @@ class Company extends Model
 
     
     protected $fillable = [
-    'name', 'cnpj', 'address', 'city', 'uf', 'phone', 'email', 'user_id'];
+    'name', 'cnpj', 'address', 'city', 'uf', 'phone', 'email', 'user_id', 'cep'];
 
 
 }

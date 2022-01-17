@@ -1,15 +1,36 @@
 
-        @csrf
+       
        <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}" class="form-control">
-         Nome:
+	    @csrf
+		<div class="row">
+			<div class="col-md-8">
+
+			Nome:
          <input type="text" name="name" id="name"  value="{{ $cad->name ?? old ('name')}}" class="form-control">
-         Telefone:
+			</div>
+			<div class="col-md-4">
+
+			CPF:
+         <input type="text" name="cpf" id="cpf"  value="{{ $cad->cpf ?? old ('cpf')}}" class="form-control">
+			</div>
+			<div class="col-md-4">
+
+			Telefone:
          <input type="text" name="phone" id="phone" value="{{ $cad->phone ?? old ('phone')}}" class="form-control">
-         Email:
+			</div>
+			<div class="col-md-4">
+
+			Email:
          <input type="text" name="email" id="email" value="{{ $cad->email ?? old ('email')}}" class="form-control">
-         Endereço:      
+			</div>
+			<div class="col-md-6">
+
+			Endereço:      
          <input type="text" name="address" id="address" value="{{ $cad->address ?? old ('address')}}" class="form-control"> 
-         Estado:
+       
+			</div>
+			<div class="col-md-2">
+			Estado:
          <select class="form-control " id="uf" name="uf" style="color: #00a5bb" required>
 	<option value="">Selecione</option>
 	<option value="AC" @if (!empty($cad)) {{ $cad->uf == 'AC' ? 'selected' : '' }} @endif>Acre</option>
@@ -40,7 +61,12 @@
 	<option value="SE"  @if (!empty($cad)) {{ $cad->uf == 'SE' ? 'selected' : '' }} @endif >Sergipe</option>
 	<option value="TO"  @if (!empty($cad)) {{ $cad->uf == 'TO' ? 'selected' : '' }} @endif >Tocantins</option>
 </select>
-         Cidade:
+			</div>
+			<div class="col-md-4">
+				
+			Cidade:
          <input type="text" name="city" id="city" value="{{ $cad->city ?? old ('city')}}"class="form-control">
+			</div>
+		</div> 
         <br> 
         <button type="subbmit" class="btn btn-primary addCompany">Salvar</button>
