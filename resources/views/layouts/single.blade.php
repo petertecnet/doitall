@@ -39,7 +39,7 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
-      
+
     </ul>
 
     <!-- SEARCH FORM -->
@@ -159,7 +159,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="/img/avataruser.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="/avatar/{{Auth::user()->avatar}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">{{ Auth::user()->name }}</a>
@@ -191,7 +191,7 @@
   </div>
   <!-- /.content-wrapper -->
 
-  
+
 <!-- The Modal of Company Create -->
 <div class="modal" id="companycreate">
   <div class="modal-dialog modal-xl ">
@@ -204,13 +204,13 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        
-      <p class="modal-title">Quem bom que você tem uma empresa. 
-          Ficamos muito gratos em poder cooperar para o crescimento de seu negocio. 
+
+      <p class="modal-title">Quem bom que você tem uma empresa.
+          Ficamos muito gratos em poder cooperar para o crescimento de seu negocio.
           Digite abaixo alguns dados para que possamos liberar varias funcionalidades para gerenciar os processos de seu negocio.
         </p><br>
-        
-    
+
+
         <form action="{{ route('companies.store') }}" method="POST">
        <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}" class="form-control">
         @csrf
@@ -274,19 +274,19 @@
           Cidade:
          <input type="text" name="city" id="city" class="form-control" required>
           </div>
-          
+
           <div class="col-md-8">
 
-          Endereço:      
-         <input type="text" name="address" id="address" class="form-control" required> 
+          Endereço:
+         <input type="text" name="address" id="address" class="form-control" required>
           </div>
           <div class="col-md-4">
 
-          CEP:      
-         <input type="text" name="cep" id="cep" class="form-control" required> 
+          CEP:
+         <input type="text" name="cep" id="cep" class="form-control" required>
           </div>
         </div>
-        <br> 
+        <br>
         <button type="subbmit" class="btn btn-primary addCompany float-right">Cadastrar</button>
         </form>
       </div>
