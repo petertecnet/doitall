@@ -30,8 +30,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::group(['middleware' => 'auth.role:0'], function () {
  Route::resource('users', UserController::class );
- 
+
 Route::resource('companies', CompanyController::class );
+Route::resource('products', ProductController::class );
 
 Route::group(['middleware' => 'auth.role:9'], function () {
 

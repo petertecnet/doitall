@@ -19,6 +19,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'avatar',
         'name',
         'email',
         'password',
@@ -49,7 +50,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+
     public function _role(){
         if ($this->role==9) return "Administrador";
         if ($this->role==8) return "Gerente";
@@ -65,7 +66,7 @@ class User extends Authenticatable
         if($this->company_id>0)
        { foreach($companies as $company)
         {
-            if ($this->company_id == $company->id) 
+            if ($this->company_id == $company->id)
             {return  $company->name;}
 
 

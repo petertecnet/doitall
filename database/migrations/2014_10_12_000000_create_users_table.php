@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->tinyInteger('status')->default(1)->comment('0 bloqueado - 1 liberado - 2 pendente');
+			$table->string('avatar')->nullable();
             $table->tinyInteger('role')->default(0)->comment('0-Cliente - 1-Funcionario - 2-Supervisor 8-Gerente 9-Administrador');
             $table->string('name',50);
             $table->string('phone',50)->default(0);

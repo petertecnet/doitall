@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Image;
 
 
 class UserController extends Controller
@@ -16,7 +17,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    
+
     protected $view = 'user';
     protected $route = 'users';
     public function index()
@@ -53,10 +54,10 @@ class UserController extends Controller
      */
     public function show($id)
 
-    {   
-        
+    {
+
         $cad = User::find($id);
-        
+
         //Verifica se existe o perfil
         if($cad){
         //Autoriza Role 9 - Administrador, a ver qualquer perfil
@@ -66,11 +67,11 @@ class UserController extends Controller
         //Autoriza Role 8 - Gerente da empresa, a ver o perfil se o user for da sua empresa.
         If((Auth::user()->role == 8) && Auth::user()->company_id == $cad->company_id)
             { return view($this->view.'.show', compact('cad'));}
-        }  
-        //Força a pagina do perfil do usuario logado caso não tenha autorização pra ver outro perfil.    
+        }
+        //Força a pagina do perfil do usuario logado caso não tenha autorização pra ver outro perfil.
         $id = Auth::user()->id;
-        $cad = User::find($id);        
-        return view($this->view.'.show', compact('cad'));   
+        $cad = User::find($id);
+        return view($this->view.'.show', compact('cad'));
 
     }
 
@@ -88,10 +89,10 @@ class UserController extends Controller
         endif;
         //Verifica se é o perfil do usuario logado
         if($cad->id == Auth::user()->id)
-        { return view($this->view.'.update', compact('cad')); }  
+        { return view($this->view.'.update', compact('cad')); }
         //Verifica se é administrador
         if(Auth::user()->role == 9)
-        { return view($this->view.'.update', compact('cad')); }   
+        { return view($this->view.'.update', compact('cad')); }
         return redirect()->back();
     }
 
@@ -110,6 +111,16 @@ class UserController extends Controller
         endif;
 
         $cad->update($request->all());
+        if($request->hasFile('avatar'))
+        {
+
+            $avatar = $request->file('avatar');
+            $filename = time().'.'.$avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300,300)->save(public_path('/avatar/'.$filename));
+            $cad->avatar = $filename;
+            $cad->save();
+
+        }
         $id= $cad->id;
         return view($this->view.'.update', compact('cad'))->with('success', "Cadastrado efetivado com sucesso!");
     }
