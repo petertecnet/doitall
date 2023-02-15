@@ -1,0 +1,293 @@
+import 'dart:convert';
+import 'dart:js';
+
+import 'package:flutter/material.dart';
+
+import '../../Core/Animation/Fade_Animation.dart';
+import '../../Core/Colors/Hex_Color.dart';
+import 'forgotpassword_page.dart';
+import 'home_page.dart';
+import 'newregister_page.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final _formkey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  bool _versenha = false;
+
+  Color enabled = Color(0XEE00b3eb);
+  Color enabledtxt = Colors.white;
+  Color deaible = Colors.grey;
+  Color backgroundColor = const Color(0xFF1F1A30);
+  bool ispasswordev = true;
+
+  @override
+  Widget _body() {
+    return Form(
+      key: _formkey,
+      child: Scaffold(
+        body: Container(
+       
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Card(
+                    elevation: 5,
+                    color: const Color.fromARGB(255, 171, 211, 250)
+                        .withOpacity(0.4),
+                    child: Container(
+                      width: 400,
+                      padding: const EdgeInsets.all(40.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          FadeAnimation(
+                            delay: 0.8,
+                            child: Image.network(
+                              "https://doitall.com.br/img/logo.png",
+                              width: 100,
+                              height: 100,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          FadeAnimation(
+                            delay: 1,
+                            child: const Text(
+                              "Doitall",
+                              style: TextStyle(
+                                  color: Colors.white, letterSpacing: 0.5),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          FadeAnimation(
+                            delay: 1,
+                            child: Container(
+                              width: 300,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12.0),
+                              ),
+                              padding: const EdgeInsets.all(5.0),
+                              child: TextFormField(
+                                  controller: _emailController,
+                                  onChanged: (text) {},
+                                  keyboardType: TextInputType.emailAddress,
+                                  decoration: InputDecoration(
+                                      filled: true, //<-- SEE HERE
+                                      fillColor: Colors.white,
+                                      labelText: 'Email',
+                                      border: OutlineInputBorder()),
+                                  validator: (email) {
+                                    if (email == null || email.isEmpty) {
+                                      return "Digite seu email";
+                                    }
+                                    return null;
+                                  }),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          FadeAnimation(
+                            delay: 1,
+                            child: Container(
+                              width: 300,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12.0),
+                              ),
+                              padding: const EdgeInsets.all(5.0),
+                              child: TextFormField(
+                                  controller: _passwordController,
+                                  keyboardType: TextInputType.visiblePassword,
+                                  onChanged: (text) {},
+                                  obscureText: !_versenha,
+                                  decoration: InputDecoration(
+                                      suffixIcon: IconButton(
+                                        icon: Icon(_versenha
+                                            ? Icons.visibility_off_outlined
+                                            : Icons.visibility_outlined),
+                                        onPressed: () {
+                                          setState(() {
+                                            _versenha = !_versenha;
+                                          });
+                                        },
+                                      ),
+                                      filled: true, //<-- SEE HERE
+                                      fillColor: Colors.white,
+                                      labelText: 'Passowrd',
+                                      border: OutlineInputBorder()),
+                                  validator: (password) {
+                                    if (password == null || password.isEmpty) {
+                                      return "Digite sua senha";
+                                    }
+                                    return null;
+                                  }),
+                            ),
+                          ),s
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          FadeAnimation(
+                            delay: 1,
+                            child: ElevatedButton(
+                                onPressed: () {
+                                  if (_formkey.currentState!.validate()) {
+                                    login();
+                                  }
+                                },
+                                child: Text(
+                                  "Entrar",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    letterSpacing: 0.5,
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                style: TextButton.styleFrom(
+                                    backgroundColor: Color(0XFF00b3eb),
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 14.0, horizontal: 80),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(12.0)))),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  //End of Center Card
+                  //Start of outer card
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  FadeAnimation(
+                    delay: 1,
+                    child: GestureDetector(
+                      onTap: (() {
+                        Navigator.pop(context);
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (context) {
+                          return ForgotPasswordPage();
+                        }));
+                      }),
+                      child: Text("Esqueceu a senha?",
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(0.9),
+                            letterSpacing: 0.5,
+                          )),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  FadeAnimation(
+                    delay: 1,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Text("Ainda não tem cadastro? ",
+                            style: TextStyle(
+                              color: Colors.grey,
+                              letterSpacing: 0.5,
+                            )),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => NewRegisterPage(),
+                              ),
+                            );
+                          },
+                          child: Text("Registrar",
+                              style: TextStyle(
+                                  color: Colors.white.withOpacity(0.9),
+                                  fontWeight: FontWeight.bold,
+                                  letterSpacing: 0.5,
+                                  fontSize: 14)),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+      body: Stack(
+    children: [
+      SizedBox(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: Image.asset(
+            'assets/images/background.png',
+            fit: BoxFit.cover,
+          )),
+      Container(
+        color: Colors.black.withOpacity(0.3),
+      ),
+      _body(),
+    ],
+  ));
+}
+
+login() async {
+  var url = Uri.parse('http://127.0.0.1:8000/api/login');
+  var response = await http.post(
+    url,
+    body: {
+      'password': _passwordController.text,
+      'email': _emailController.text,
+    },
+  );
+
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  var json = jsonDecode((response.body));
+
+  if (json['status'] == 200) {
+    String token = (json['token']);
+    await prefs.setString('token', 'token $token');
+    Navigator.pushReplacement(
+      context as BuildContext,
+      MaterialPageRoute(
+        builder: (context) => HomePage(),
+      ),
+    );
+  }
+  if (json['status'] == 500) {
+    ScaffoldMessenger.of(context as BuildContext).showSnackBar(
+      const SnackBar(
+        backgroundColor: Colors.redAccent,
+        content: Center(child: Text('Email e senha inválidos')),
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }
+}
